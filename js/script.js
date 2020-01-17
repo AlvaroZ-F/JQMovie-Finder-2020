@@ -2,10 +2,22 @@
 
 $(document).ready(() => {
 	$('#findMovie').click(function(){
-		let searchText = $('#searchText').val();
-		getMovies(searchText);
+		var searchText = $('#searchText').val();
+		var currentPage = 1;
+		loadNext(currentPage);
 	});
 });
+
+$(window).scroll(function() {
+	if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+		loadNext(currentPage);
+		currentPage++;
+	}
+});
+
+function loadMore(currentPage) {
+	return getMovies(searchText, currentPage);
+}
 
 function getMovies(searchText, page=1) {
 	$('#service').html("<h2 id='loading'>Loading. . .</h2>");
