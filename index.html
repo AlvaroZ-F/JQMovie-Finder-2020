@@ -30,6 +30,7 @@
 			<link rel="stylesheet" href="css/animate.min.css">
 			<link rel="stylesheet" href="css/owl.carousel.css">
 			<link rel="stylesheet" href="css/main.css">
+			<link rel="stylesheet" href="css/modal-style.css">
 	</head>
 	<body>
 
@@ -81,7 +82,39 @@
 
 
 			<!-- Start service Area -->
-		<section class="service-area section-gap" id="service"></section>
+		<section class="service-area section-gap" id="service">
+			<!-- Modal -->
+			<div class="modal fade" id="modalDescription" tabindex="-1" role="dialog">
+				<div class="modal-dialog modal-dialog-scrollable" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h2 class="desc-modal-Title"></h2>
+						</div>
+						<div class="modal-body">
+							<div class="parent-modalbody-grid">
+								<div class="div1"></div>
+								<div class="div2">
+									<h5 class="desc-modal-Director">Director: <p class="modal-Boxes" id="directorBox"></p></h5>
+									<h5 class="desc-modal-Actors">Actors: <p class="modal-Boxes" id="actorsBox"></p></h5>
+									<h5 class="desc-modal-Genre">Genre: <p class="modal-Boxes" id="genreBox"></p></h5>
+									<h5 class="desc-modal-Language">Language: <p class="modal-Boxes" id="languageBox"></p></h5>
+									<h5 class="desc-modal-Country">Country: <p class="modal-Boxes" id="countryBox"></p></h5>
+								</div>
+								<div class="div3">
+									<h5 class="desc-modal-Released">Release Date: <p class="modal-Boxes" id="releasedBox"></p></h5>
+								</div>
+								<div class="div4">
+									<h5 class="desc-modal-Rating">Rating: <p class="modal-Boxes" id="ratingBox"></p></h5>
+								</div>
+								<div class="div5">
+									<h5 class="desc-modal-Plot">Plot: <p class="modal-Boxes" id="plotBox"></p></h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 			<!-- End service Area -->
 
 			<!-- start footer Area -->		

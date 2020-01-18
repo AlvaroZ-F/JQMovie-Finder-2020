@@ -10,11 +10,11 @@ $(document).ready(() => {
 		win.scroll(function() {
 			if ($(document).height() - win.height() == win.scrollTop()) {
 				$('#loading').show();
+				$('#loading').hide();
 				currentPage++;
 				loadNext(searchText, currentPage);
 			}
 		});
-		$('#loading').hide();
 	});
 });
 
@@ -30,7 +30,7 @@ function getMovies(searchText, page=1) {
 	$.getJSON("http://www.omdbapi.com/?s="+searchText+"&apikey=f187dec7&page="+page, function(result) {
 		var output = '<div class="container"><div class="row">';
 		$.each(result.Search, function(i, field) {
-			output += '<div class="col-lg-4" onClick=getMoreDetails("'+field.imdbID+'")><div class="single-service">'
+			output += '<div class="col-lg-4" data-toggle="modal" data-target="#modalDescription" onClick=getMoreDetails("'+field.imdbID+'")><div class="single-service">'
 			output += '<div class="thumb"><img class="img-fluid" src="'+field.Poster+'" alt=""></div>';
 			output += '<div class="detail"><h2>'+field.Title+'</h2>';
 			output += '<p>Date of release: '+field.Year+'</p></div></div></div>';
@@ -42,6 +42,23 @@ function getMovies(searchText, page=1) {
 }
 
 function getMoreDetails(idMovie) {
+	// Here we'll clean up the modal content to fill it with new information
+	$('.modal-Boxes').html('');
+	$.getJSON('http://www.omdbapi.com/?i='+idMovie+'&apikey=f187dec7', function(result) {
+		$.each(result, function(field){
+			$('#directorBox').append(field.Director);
+			$('#actorsBox').append(field.Actors);
+			$('#genreBox').append(field.Genre);
+			$('#languageBox').append(field.Language);
+			$('#countryBox').append(field.Country);
+			$('#releasedBox').append(field.Released);
+			$('#ratingBox').append(field.Ratings);
+			$('#plotBox').append(field.Plot);
+			$('.desc-modal-Title').append(field.Title);
+			$('.div1').append('<img class="img-fluid" src="'+field.Poster+'" alt="">');
+		});
+	});
+	/*
 	$('#')
 	$.getJSON("http://www.omdbapi.com/?i="+idMovie+"&apikey=f187dec7", function(result) {
 		var output = '<div class="modal fade" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content"><div class="modal-body"><div class="container-fluid">';
@@ -60,4 +77,5 @@ function getMoreDetails(idMovie) {
 		output += '</div></div></div></div></div>';
 		$('#service').append(output);
 	});
+	*/
 }
