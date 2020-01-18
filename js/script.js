@@ -9,8 +9,6 @@ $(document).ready(() => {
 		loadNext(searchText, currentPage);
 		win.scroll(function() {
 			if ($(document).height() - win.height() == win.scrollTop()) {
-				$('#loading').show();
-				$('#loading').hide();
 				currentPage++;
 				loadNext(searchText, currentPage);
 			}
@@ -26,11 +24,10 @@ function loadNext(searchText, currentPage) {
 }
 
 function getMovies(searchText, page=1) {
-	$('#service').append("<h2 id='loading'>Loading. . .</h2>");
 	$.getJSON("http://www.omdbapi.com/?s="+searchText+"&apikey=f187dec7&page="+page, function(result) {
 		var output = '<div class="container"><div class="row">';
 		$.each(result.Search, function(i, field) {
-			output += '<div class="col-lg-4" data-toggle="modal" data-target="#modalDescription" onClick=getMoreDetails("'+field.imdbID+'")><div class="single-service">'
+			output += '<div class="col-lg-3" data-toggle="modal" data-target="#modalDescription" onClick=getMoreDetails("'+field.imdbID+'")><div class="single-service">'
 			output += '<div class="thumb"><img class="img-fluid" src="'+field.Poster+'" alt=""></div>';
 			output += '<div class="detail"><h2>'+field.Title+'</h2>';
 			output += '<p>Date of release: '+field.Year+'</p></div></div></div>';
@@ -38,7 +35,6 @@ function getMovies(searchText, page=1) {
 		output += '</div></div>';
 		$('#service').append(output);
 	});
-	$('#loading').hide();
 }
 
 function getMoreDetails(idMovie) {
