@@ -42,21 +42,16 @@ function getMovies(searchText, page=1) {
 }
 
 function getMoreDetails(idMovie) {
-	// Here we'll clean up the modal content to fill it with new information
-	$('.modal-Boxes').html('');
 	$.getJSON('http://www.omdbapi.com/?i='+idMovie+'&apikey=f187dec7', function(result) {
-		$.each(result, function(field){
-			$('#directorBox').append(field.Director);
-			$('#actorsBox').append(field.Actors);
-			$('#genreBox').append(field.Genre);
-			$('#languageBox').append(field.Language);
-			$('#countryBox').append(field.Country);
-			$('#releasedBox').append(field.Released);
-			$('#ratingBox').append(field.Ratings);
-			$('#plotBox').append(field.Plot);
-			$('.desc-modal-Title').append(field.Title);
-			$('.div1').append('<img class="img-fluid" src="'+field.Poster+'" alt="">');
-		});
+		$('#directorBox').html(result.Director);
+		$('#actorsBox').html(result.Actors);
+		$('#genreBox').html(result.Genre);
+		$('#languageBox').html(result.Language);
+		$('#countryBox').html(result.Country);
+		$('#releasedBox').html(result.Released);
+		$('#plotBox').html(result.Plot);
+		$('.desc-modal-Title').html(result.Title);
+		$('#posterDescription').html('<img class="img-fluid" src="'+result.Poster+'" alt="">');
 	});
 	/*
 	$('#')

@@ -2408,6 +2408,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .single-service:hover {
   background-color: #fab700;
+  cursor: pointer;
 }
 
 .single-service:hover h4, .single-service:hover p {
