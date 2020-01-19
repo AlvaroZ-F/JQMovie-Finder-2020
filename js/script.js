@@ -6,22 +6,15 @@ $(document).ready(() => {
 		var currentPage = 1;
 
 		var win = $(window);
-		loadNext(searchText, currentPage);
+		getMovies(searchText, currentPage);
 		win.scroll(function() {
 			if ($(document).height() - win.height() == win.scrollTop()) {
 				currentPage++;
-				loadNext(searchText, currentPage);
+				getMovies(searchText, currentPage);
 			}
 		});
 	});
 });
-
-
-
-
-function loadNext(searchText, currentPage) {
-	return getMovies(searchText, currentPage);
-}
 
 function getMovies(searchText, page=1) {
 	$.getJSON("http://www.omdbapi.com/?s="+searchText+"&apikey=f187dec7&page="+page, function(result) {
